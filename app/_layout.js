@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import ThemeToggle from "./components/ThemeToggle";
-import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import { ThemeProvider, useTheme } from "../context/ThemeContext";
 
 function StackLayout() {
     const { color } = useTheme();

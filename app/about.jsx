@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, ScrollView, TouchableWithoutFeedback, Animated } from "react-native";
-import { useTheme } from "./context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 import { useRef } from "react";
 
 // Card ที่มี animation ขยายตอนกด

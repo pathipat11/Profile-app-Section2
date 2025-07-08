@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
     StyleSheet,
     Image,
@@ -7,12 +7,43 @@ import {
     TouchableOpacity,
     Linking,
     ScrollView,
+    Animated,
+    TouchableWithoutFeedback,
 } from "react-native";
 import { Link } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { useTheme } from "./context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
-const Home = () => {
+// 🌀 Card with animated scale
+const AnimatedCard = ({ children, color }) => {
+    const scale = useRef(new Animated.Value(1)).current;
+
+    const onPressIn = () => {
+        Animated.spring(scale, {
+        toValue: 0.97,
+        useNativeDriver: true,
+        }).start();
+    };
+
+    const onPressOut = () => {
+        Animated.spring(scale, {
+        toValue: 1,
+        friction: 3,
+        tension: 40,
+        useNativeDriver: true,
+        }).start();
+    };
+
+    return (
+        <TouchableWithoutFeedback onPressIn={onPressIn} onPressOut={onPressOut}>
+        <Animated.View style={[styles.card, { backgroundColor: color.surface, transform: [{ scale }] }]}>
+            {children}
+        </Animated.View>
+        </TouchableWithoutFeedback>
+    );
+    };
+
+    const Home = () => {
     const { color } = useTheme();
 
     const contactLinks = [
@@ -40,81 +71,50 @@ const Home = () => {
     ];
 
     return (
-    <ScrollView style={{ backgroundColor: color.background }}>
-        <View style={[styles.container]}>
+        <ScrollView style={{ backgroundColor: color.background }}>
+        <View style={styles.container}>
             {/* Profile */}
             <View style={styles.profileBox}>
-            <Image
-                source={require("../assets/image/profile.jpg")}
-                style={styles.profile}
-            />
-            <Text style={[styles.name, { color: color.text }]}>
-                Pathipat Mattra
-            </Text>
-            <Text style={[styles.sub, { color: color.textSecondary }]}>
-                Student Number: 65345293-2
-            </Text>
+            <Image source={require("../assets/image/profile.jpg")} style={styles.profile} />
+            <Text style={[styles.name, { color: color.text }]}>Pathipat Mattra</Text>
+            <Text style={[styles.sub, { color: color.textSecondary }]}>Student Number: 65345293-2</Text>
             </View>
 
             {/* Education */}
-            <View style={[styles.card, { backgroundColor: color.surface }]}>
-            <Text style={[styles.cardTitle, { color: color.primary }]}>
-                Education
-            </Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>
-                📚 Khon Kaen University
-            </Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>
-                📘 Major: Computer Science
-            </Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>
-                🧾 Bachelor of Science in Computer Science
-            </Text>
-            </View>
+            <AnimatedCard color={color}>
+            <Text style={[styles.cardTitle, { color: color.primary }]}>Education</Text>
+            <Text style={[styles.text, { color: color.textSecondary }]}>📚 Khon Kaen University</Text>
+            <Text style={[styles.text, { color: color.textSecondary }]}>📘 Major: Computer Science</Text>
+            <Text style={[styles.text, { color: color.textSecondary }]}>🧾 Bachelor of Science in Computer Science</Text>
+            </AnimatedCard>
 
             {/* Interests */}
-            <View style={[styles.card, { backgroundColor: color.surface }]}>
-            <Text style={[styles.cardTitle, { color: color.primary }]}>
-                Interests
-            </Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>
-                🔧 Web Application Development (Back-end)
-            </Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>
-                💻 Aspiring Software Engineer
-            </Text>
-            </View>
+            <AnimatedCard color={color}>
+            <Text style={[styles.cardTitle, { color: color.primary }]}>Interests</Text>
+            <Text style={[styles.text, { color: color.textSecondary }]}>🔧 Web Application Development (Back-end)</Text>
+            <Text style={[styles.text, { color: color.textSecondary }]}>💻 Aspiring Software Engineer</Text>
+            </AnimatedCard>
 
             {/* Contact */}
-            <View style={[styles.card, { backgroundColor: color.surface }]}>
-            <Text style={[styles.cardTitle, { color: color.primary }]}>
-                Contact
-            </Text>
+            <AnimatedCard color={color}>
+            <Text style={[styles.cardTitle, { color: color.primary }]}>Contact</Text>
             {contactLinks.map((item, idx) => (
                 <TouchableOpacity
                 key={idx}
                 style={styles.contactCard}
                 onPress={() => Linking.openURL(item.link)}
+                activeOpacity={0.7}
                 >
-                <Icon
-                    name={item.icon}
-                    size={22}
-                    color={item.color}
-                    style={{ marginRight: 12 }}
-                />
+                <Icon name={item.icon} size={22} color={item.color} style={{ marginRight: 12 }} />
                 <View>
-                    <Text style={[styles.contactLabel, { color: color.text }]}>
-                    {item.label}
-                    </Text>
-                    <Text style={[styles.contactValue, { color: color.textSecondary }]}>
-                    {item.value}
-                    </Text>
+                    <Text style={[styles.contactLabel, { color: color.text }]}>{item.label}</Text>
+                    <Text style={[styles.contactValue, { color: color.textSecondary }]}>{item.value}</Text>
                 </View>
                 </TouchableOpacity>
             ))}
-            </View>
+            </AnimatedCard>
 
-            {/* About Us Link */}
+            {/* About link */}
             <Link href="/about" style={[styles.button, { backgroundColor: color.primary }]}>
             <Text style={{ color: "#fff", fontWeight: "600" }}>About the Course</Text>
             </Link>
@@ -125,6 +125,7 @@ const Home = () => {
 
 export default Home;
 
+
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     },
     profileBox: {
         alignItems: "center",
-        marginBottom: 20,
+        marginBottom: 24,
     },
     profile: {
         height: 128,
@@ -153,8 +154,12 @@ const styles = StyleSheet.create({
     },
     card: {
         padding: 16,
-        borderRadius: 12,
-        marginTop: 16,
+        borderRadius: 14,
+        marginBottom: 18,
+        elevation: 3,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
     },
     cardTitle: {
         fontSize: 18,
@@ -179,7 +184,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginTop: 24,
-        paddingVertical: 10,
+        paddingVertical: 12,
         borderRadius: 8,
         alignItems: "center",
         textAlign: "center",

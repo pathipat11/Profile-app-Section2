@@ -1,31 +1,32 @@
-# Profile-app
+# Profile-app-Section2
 
-A modern profile showcase built with **React Native** and **Expo Router**. This app displays user profile information with support for light and dark mode toggling, smooth UI transitions, and responsive design elements.
+A modern profile showcase built with **React Native** and **Expo Router**. This app displays user profile and course-related information, fully optimized for both **dark** and **light** themes with smooth transitions and elegant design.
 
-## Features
+## ✨ Features
 
-* 👤 Profile section with avatar and personal information
-* 🎓 Education and interest highlights
-* 🔗 Contact cards (Facebook, GitHub, LinkedIn) with icons
-* 📊 Stats section (projects, followers, following)
-* 🌙 Dark mode / 🌞 Light mode toggle with smooth animations
-* 💡 Responsive and modern card-based layout
+* 👤 Personal profile with avatar, education, and interests
+* 📘 Course overview: **Hybrid Mobile Application Programming (IN405109)**
+* 👨‍🏫 Instructor information section
+* 🔗 Social contacts (Facebook, GitHub, LinkedIn) with icon and link support
+* 🌗 Theme toggle (Dark / Light) powered by **Context API**
+* 🎨 Beautiful animated cards with scaling on press (like hover)
+* 📱 Mobile-responsive layout built for real-world usage
 
-## Technologies Used
+## 🛠️ Tech Stack
 
 * React Native
 * Expo
 * Expo Router
 * React Native Vector Icons
-* Context API (for theme switching)
-* Animated API (for smooth transitions)
+* Context API
+* Animated API
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-* Node.js & npm
-* Expo CLI (`npm install -g expo-cli`)
+* Node.js
+* Expo CLI: `npm install -g expo-cli`
 
 ### Installation
 
@@ -33,35 +34,42 @@ A modern profile showcase built with **React Native** and **Expo Router**. This 
 npm install
 ```
 
-### Running the App
+### Run the App
 
 ```bash
 npx expo start
 ```
 
-Then scan the QR code using Expo Go on your mobile device or run in an emulator.
+Scan the QR code using Expo Go or run on an Android/iOS emulator.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-Profile-app/
+Profile-app-Section2/
 ├── app/
-│   ├── index.jsx              # Main Profile Screen
-│   └── _layout.js            # App Layout + Theme toggle
+│   ├── index.jsx              # Home (Profile) Screen
+│   ├── about.jsx              # About the Course Page
+│   └── _layout.js             # Navigation Layout with ThemeProvider
+├── components/
+│   └── ThemeToggle.jsx        # Theme toggle button in header
 ├── context/
-│   └── ThemeContext.js       # ThemeProvider + useTheme hook
+│   └── ThemeContext.js        # Theme context and hook
 ├── assets/
-│   └── ...                   # (optional) images/icons
+│   ├── image/
+│   │   ├── profile.jpg        # Profile image
+│   │   └── teacher.jpg        # Instructor image
 ├── package.json
 └── README.md
 ```
 
-## Author
+## 👤 Author
 
-Pathipat Mattra
+**Pathipat Mattra**
 
-* Facebook: [Pathipat Mattra](https://facebook.com/pathipat.mattra)
-* GitHub: [pathipat11](https://github.com/pathipat11)
-* LinkedIn: [Pathipat Mattra](https://linkedin.com/in/viixl)
+* 🌐 Facebook: [Pathipat Mattra](https://facebook.com/pathipat.mattra)
+* 💻 GitHub: [pathipat11](https://github.com/pathipat11)
+* 💼 LinkedIn: [Pathipat Mattra](https://linkedin.com/in/viixl)
 
 ---
+
+Crafted with 💙 for the course *Hybrid Mobile Application Programming* (IN405109) at Khon Kaen University.
