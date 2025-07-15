@@ -27,6 +27,9 @@ export const ThemeProvider = ({ children }) => {
             primary: isDarkMode ? "#bb86fc" : "#6200ee",
             secoundary: isDarkMode ? "#03dac6" : "#03dac5",
             error: isDarkMode ? "#cf6679" : "#b00020",
+
+            buttonAbout: isDarkMode ? "#bb86fc" : "#6200ee",
+            buttonBooks: isDarkMode ? "#03dac5" : "#28a745",
         },
     };
 

@@ -75,24 +75,24 @@ const AnimatedCard = ({ children, color }) => {
         <View style={styles.container}>
             {/* Profile */}
             <View style={styles.profileBox}>
-            <Image source={require("../assets/image/profile.jpg")} style={styles.profile} />
-            <Text style={[styles.name, { color: color.text }]}>Pathipat Mattra</Text>
-            <Text style={[styles.sub, { color: color.textSecondary }]}>Student Number: 65345293-2</Text>
+                <Image source={require("../assets/image/profile.jpg")} style={styles.profile} />
+                <Text style={[styles.name, { color: color.text }]}>Pathipat Mattra</Text>
+                <Text style={[styles.sub, { color: color.textSecondary }]}>Student Number: 65345293-2</Text>
             </View>
 
             {/* Education */}
             <AnimatedCard color={color}>
-            <Text style={[styles.cardTitle, { color: color.primary }]}>Education</Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>📚 Khon Kaen University</Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>📘 Major: Computer Science</Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>🧾 Bachelor of Science in Computer Science</Text>
+                <Text style={[styles.cardTitle, { color: color.primary }]}>Education</Text>
+                <Text style={[styles.text, { color: color.textSecondary }]}>📚 Khon Kaen University</Text>
+                <Text style={[styles.text, { color: color.textSecondary }]}>📘 Major: Computer Science</Text>
+                <Text style={[styles.text, { color: color.textSecondary }]}>🧾 Bachelor of Science in Computer Science</Text>
             </AnimatedCard>
 
             {/* Interests */}
             <AnimatedCard color={color}>
-            <Text style={[styles.cardTitle, { color: color.primary }]}>Interests</Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>🔧 Web Application Development (Back-end)</Text>
-            <Text style={[styles.text, { color: color.textSecondary }]}>💻 Aspiring Software Engineer</Text>
+                <Text style={[styles.cardTitle, { color: color.primary }]}>Interests</Text>
+                <Text style={[styles.text, { color: color.textSecondary }]}>🔧 Web Application Development (Back-end)</Text>
+                <Text style={[styles.text, { color: color.textSecondary }]}>💻 Aspiring Software Engineer</Text>
             </AnimatedCard>
 
             {/* Contact */}
@@ -115,9 +115,14 @@ const AnimatedCard = ({ children, color }) => {
             </AnimatedCard>
 
             {/* About link */}
-            <Link href="/about" style={[styles.button, { backgroundColor: color.primary }]}>
-            <Text style={{ color: "#fff", fontWeight: "600" }}>About the Course</Text>
+            <Link href="/about" style={[styles.button, { backgroundColor: color.buttonAbout }]}>
+                <Text style={{ color: "#fff", fontWeight: "600" }}>About the Course</Text>
             </Link>
+
+            <Link href={"/book"} style={[styles.button, { backgroundColor: color.buttonBooks }]}>
+                <Text style={{ color: "#fff", fontWeight: "600" }}>Book Collection</Text>
+            </Link>
+
         </View>
         </ScrollView>
     );
